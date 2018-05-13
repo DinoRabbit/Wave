@@ -59,8 +59,8 @@ public class Game extends Canvas implements Runnable
 		
 		if(gameState == STATE.Game) //start the game
 		{
-			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
-			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+			//handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+			//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 		else //on the menu
 			for(int i = 0; i < 20; i++)
@@ -169,7 +169,7 @@ public class Game extends Canvas implements Runnable
 		if(paused)
 		{
 			g.setColor(Color.white);
-			g.drawString("PAUSED", 100, 100);
+			g.drawString("PAUSED", WIDTH/2 - 32, HEIGHT/2);
 		}
 		if(gameState == STATE.Game)
 		{
@@ -204,3 +204,4 @@ public class Game extends Canvas implements Runnable
 		new Game();
 	}
 }
+
