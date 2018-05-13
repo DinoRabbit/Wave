@@ -34,12 +34,12 @@ public class HardEnemy extends GameObject
 		y += velY;
 		
 		//When direction reverses, change velocity to random values
-		if(y <= 0 || y >= Game.HEIGHT - 32) 
+		if(y <= 5 || y >= Game.HEIGHT - 37) 
 		{ 
 			if(velY < 0) velY = -(r.nextInt(7) + 1) * -1;
 			else velY = (r.nextInt(7) + 1) * -1;
 		}
-		if(x <= 0 || x >= Game.WIDTH - 16)
+		if(x <= 5 || x >= Game.WIDTH - 21)
 		{ 
 			if(velX < 0) velX = -(r.nextInt(7) + 1) * -1;
 			else velX = (r.nextInt(7) + 1) * -1;
@@ -55,3 +55,4 @@ public class HardEnemy extends GameObject
 	}
 
 }
+
