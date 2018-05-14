@@ -11,14 +11,23 @@ public class FastEnemy extends GameObject
 	
 	private Handler handler;
 
-	public FastEnemy(int x, int y, ID id, Handler handler) 
+	public FastEnemy(int x, int y, ID id, boolean horiz, Handler handler) 
 	{
 		super(x, y, id);
 		this.handler = handler;
 		
-		//Much faster vertical movement
-		velX = 2;
-		velY = 9;
+		//Much faster vertical or horizontal movement
+		if(horiz)
+		{
+			velX = 9;
+			velY = 2;
+		}
+		else
+		{
+			velX = 2;
+			velY = 9;
+		}
+		
 	}
 	
 	public Rectangle getBounds()
