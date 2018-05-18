@@ -38,7 +38,7 @@ public class Handler
 			if(tempObject.getId() == ID.Player) 
 			{ 
 				object.clear();
-				if(Game.gameState != Game.STATE.End) //re-add the player if the game isn't over yet.
+				if(Game.gameState != Game.STATE.End && Game.gameState != Game.STATE.Win) //re-add the player if the game isn't over yet.
 					addObject(new Player((int)tempObject.getX(), (int) tempObject.getY(), ID.Player, this));
 			}
 			if(Game.gameState == Game.STATE.End && tempObject.getId() == ID.Player) object.remove(tempObject);
@@ -56,3 +56,4 @@ public class Handler
 	}
 	
 }
+
