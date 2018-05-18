@@ -39,7 +39,8 @@ public class Game extends Canvas implements Runnable
 		Help,
 		Shop,
 		Game,
-		End
+		End,
+		Win
 	};
 	
 	public static STATE gameState = STATE.Menu;
@@ -145,7 +146,7 @@ public class Game extends Canvas implements Runnable
 				}	
 			}
 		}		
-		else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select)
+		else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Win)
 		{
 			handler.tick();
 			menu.tick();	
@@ -178,7 +179,7 @@ public class Game extends Canvas implements Runnable
 		}
 		else if(gameState == STATE.Shop)
 			shop.render(g);
-		else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select)
+		else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Win)
 		{
 			menu.render(g);
 			handler.render(g);
@@ -204,4 +205,5 @@ public class Game extends Canvas implements Runnable
 		new Game();
 	}
 }
+
 
