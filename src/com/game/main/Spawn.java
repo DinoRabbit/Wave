@@ -2,7 +2,7 @@ package com.game.main;
 
 import com.game.main.Game.STATE;
 
-//import java.util.Random;
+import java.util.Random;
 
 //Class to handle enemy spawning for each level
 
@@ -12,7 +12,7 @@ public class Spawn
 	private HUD hud;
 	private Game game;
 	private int scoreKeep = 0;
-	//private Random r = new Random();
+	private Random r = new Random();
 	
 	public Spawn(Game game, Handler handler, HUD hud)
 	{
@@ -142,10 +142,12 @@ public class Spawn
 					handler.addObject(new OneDimensionalEnemy(ID.OneDEnemy, true, handler));
 					handler.addObject(new OneDimensionalEnemy(ID.OneDEnemy, false, handler));
 				}
-				else if(hud.getLevel() == 61) //Game is won -- Must implement a menu for this, for now, take us to the game over screen.
+				else if(hud.getLevel() == 61) //Game is won
 				{
+					Game.gameState = STATE.Win;
 					handler.clearEnemys();
-					Game.gameState = STATE.End;
+					for(int i = 0; i < 20; i++)
+						handler.addObject(new MenuParticle(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.MenuParticle, handler));
 				}
 			}
 			
@@ -274,10 +276,12 @@ public class Spawn
 					handler.addObject(new OneDimensionalEnemy(ID.OneDEnemy, true, handler));
 					handler.addObject(new OneDimensionalEnemy(ID.OneDEnemy, false, handler));
 				}
-				else if(hud.getLevel() == 61) //Game is won -- must implement a menu for this, for now, take us to the game over screen
+				else if(hud.getLevel() == 61) //Game is won
 				{
+					Game.gameState = STATE.Win;
 					handler.clearEnemys();
-					Game.gameState = STATE.End;
+					for(int i = 0; i < 20; i++)
+						handler.addObject(new MenuParticle(r.nextInt(Game.WIDTH), r.nextInt(Game.HEIGHT), ID.MenuParticle, handler));
 				}
 			}
 		}
