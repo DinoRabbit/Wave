@@ -39,7 +39,8 @@ public class Game extends Canvas implements Runnable
 		Help,
 		Shop,
 		Game,
-		End
+		End,
+		Win
 	};
 	
 	public static STATE gameState = STATE.Menu;
@@ -59,8 +60,8 @@ public class Game extends Canvas implements Runnable
 		
 		if(gameState == STATE.Game) //start the game
 		{
-			handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
-			handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+			//handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));
+			//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 		}
 		else //on the menu
 			for(int i = 0; i < 20; i++)
@@ -145,7 +146,7 @@ public class Game extends Canvas implements Runnable
 				}	
 			}
 		}		
-		else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select)
+		else if(gameState == STATE.Menu || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Win)
 		{
 			handler.tick();
 			menu.tick();	
@@ -169,7 +170,7 @@ public class Game extends Canvas implements Runnable
 		if(paused)
 		{
 			g.setColor(Color.white);
-			g.drawString("PAUSED", 100, 100);
+			g.drawString("PAUSED", WIDTH/2 - 32, HEIGHT/2);
 		}
 		if(gameState == STATE.Game)
 		{
@@ -178,7 +179,7 @@ public class Game extends Canvas implements Runnable
 		}
 		else if(gameState == STATE.Shop)
 			shop.render(g);
-		else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select)
+		else if(gameState == STATE.Menu || gameState == STATE.Help || gameState == STATE.End || gameState == STATE.Select || gameState == STATE.Win)
 		{
 			menu.render(g);
 			handler.render(g);
@@ -204,3 +205,5 @@ public class Game extends Canvas implements Runnable
 		new Game();
 	}
 }
+
+

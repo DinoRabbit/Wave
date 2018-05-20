@@ -11,13 +11,33 @@ public class BasicEnemy extends GameObject
 	
 	private Handler handler;
 
-	public BasicEnemy(int x, int y, ID id, Handler handler) 
+	public BasicEnemy(int x, int y, int mode, ID id, Handler handler) 
 	{
 		super(x, y, id);
 		this.handler = handler;
 		
-		velX = 5;
-		velY = 5;
+		switch(mode)
+		{
+			case 1:
+				velX = 5;
+				velY = 5;
+				break;
+			case 2:
+				velX = -5;
+				velY = 5;
+				break;
+			case 3:
+				velX = 5;
+				velY = -5;
+				break;
+			case 4:
+				velX = -5;
+				velY = -5;
+				break;
+			default:
+				velX = 5;
+				velY = 5;
+		}
 	}
 	
 	public Rectangle getBounds()

@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
+//import java.util.Random;
 
 import com.game.main.Game.STATE;
 
@@ -16,7 +16,7 @@ public class Menu extends MouseAdapter
 	Game game;
 	Handler handler;
 	private HUD hud;
-	private Random r = new Random();
+	//private Random r = new Random();
 	
 	public Menu(Game game, Handler handler, HUD hud)
 	{
@@ -55,7 +55,7 @@ public class Menu extends MouseAdapter
 				Game.gameState = STATE.Game;
 				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
 				handler.clearEnemys();
-				handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				//handler.addObject(new BasicEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 				game.diff = 0;
 			}
 			//Hard Button
@@ -64,7 +64,7 @@ public class Menu extends MouseAdapter
 				Game.gameState = STATE.Game;
 				handler.addObject(new Player(Game.WIDTH/2-32, Game.HEIGHT/2-32, ID.Player, handler));
 				handler.clearEnemys();
-				handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+				//handler.addObject(new HardEnemy(r.nextInt(Game.WIDTH - 50), r.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
 				game.diff = 1;
 			}
 			//Back Button in Select
@@ -82,7 +82,7 @@ public class Menu extends MouseAdapter
 				Game.gameState = STATE.Menu;
 				return;
 			}
-		if(Game.gameState == STATE.End) //End screen
+		if(Game.gameState == STATE.End || Game.gameState == STATE.Win) //End screen Win/Lose
 			//Try Again
 			if(mouseOver(mx, my, 210, 350, 200, 64))
 			{
@@ -171,6 +171,22 @@ public class Menu extends MouseAdapter
 			g.setFont(fnt2);
 			g.drawString("Try Again", 243, 393);
 		}
+		else if(Game.gameState == STATE.Win)
+		{
+			Font fnt = new Font("aerial", 1, 50);
+			Font fnt2 = new Font("aerial", 1, 30);
+			Font fnt3 = new Font("aerial", 1, 20);
+			
+			g.setFont(fnt);
+			g.setColor(Color.white);
+			g.drawString("Congratulations", 120, 70);
+			
+			g.setFont(fnt3);
+			g.drawString("You Won with a score of: " + hud.getScore(), 173, 210);
+			g.drawRect(210, 350, 200, 64);
+			g.setFont(fnt2);
+			g.drawString("Main Menu", 243, 393);
+		}
 		if(Game.gameState == STATE.Select)
 		{
 			Font fnt = new Font("aerial", 1, 50);
@@ -193,3 +209,4 @@ public class Menu extends MouseAdapter
 	}
 	
 }
+

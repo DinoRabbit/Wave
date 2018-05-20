@@ -13,13 +13,33 @@ public class HardEnemy extends GameObject
 	private Handler handler;
 	private Random r = new Random();
 
-	public HardEnemy(int x, int y, ID id, Handler handler) 
+	public HardEnemy(int x, int y, int mode, ID id, Handler handler) 
 	{
 		super(x, y, id);
 		this.handler = handler;
 		
-		velX = 5;
-		velY = 5;
+		switch(mode)
+		{
+			case 1:
+				velX = 5;
+				velY = 5;
+				break;
+			case 2:
+				velX = -5;
+				velY = 5;
+				break;
+			case 3:
+				velX = 5;
+				velY = -5;
+				break;
+			case 4:
+				velX = -5;
+				velY = -5;
+				break;
+			default:
+				velX = 5;
+				velY = 5;
+		}
 	}
 	
 	public Rectangle getBounds()
@@ -34,15 +54,15 @@ public class HardEnemy extends GameObject
 		y += velY;
 		
 		//When direction reverses, change velocity to random values
-		if(y <= 0 || y >= Game.HEIGHT - 32) 
+		if((y <= 5 && velY < 0) || (y >= Game.HEIGHT - 37 && velY > 0)) 
 		{ 
 			if(velY < 0) velY = -(r.nextInt(7) + 1) * -1;
 			else velY = (r.nextInt(7) + 1) * -1;
 		}
-		if(x <= 0 || x >= Game.WIDTH - 16)
+		if((x <= 5 && velX < 0) || (x >= Game.WIDTH - 21 && velX > 0))
 		{ 
-			if(velX < 0) velX = -(r.nextInt(7) + 1) * -1;
-			else velX = (r.nextInt(7) + 1) * -1;
+			if(velX < 0) velX = -(r.nextInt(15) + 5) * -1;
+			else velX = (r.nextInt(15) + 5) * -1;
 		}
 	
 		handler.addObject(new Trail((int)x, (int)y, ID.Trail, Color.yellow, 16, 16, 0.02f, handler));
@@ -55,3 +75,4 @@ public class HardEnemy extends GameObject
 	}
 
 }
+
